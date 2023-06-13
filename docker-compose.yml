@@ -1,0 +1,14 @@
+version: '3'
+services:
+  app1:
+    build:
+      context: ./apache
+      dockerfile: Dockerfile
+    ports:
+      - 1000:80
+  app2:
+    build:
+      context: ./flask
+      dockerfile: Dockerfile
+    ports:
+      - 1002:5000

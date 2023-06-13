@@ -1,0 +1,22 @@
+FROM alpine:latest
+RUN apk update && \
+    apk upgrade && \
+    apk add --no-cache python3 py3-pip
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the Flask application files to the container
+COPY . /app
+
+# Install the Python dependencies
+RUN pip3 install -r requirements.txt
+
+# Expose port 5000 to allow incoming connections
+EXPOSE 5000
+
+# Set the environment variable for Flask
+ENV FLASK_APP=app.py
+
+# Start the Flask application
+CMD ["flask", "run", "--host=0.0.0.0"]
